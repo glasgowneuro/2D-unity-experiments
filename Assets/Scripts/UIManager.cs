@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour {
 			Time.timeScale = 1;
 			buttonCaption.text = "II";
 		} else {
+			Exit();
 			Time.timeScale = 0;
 			buttonCaption.text = "I>";
 		}

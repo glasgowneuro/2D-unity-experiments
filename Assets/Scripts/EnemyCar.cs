@@ -14,6 +14,8 @@ public class EnemyCar : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         float x = Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
-        transform.Translate (new Vector2 (x, speed * Time.deltaTime));
+        float y = Input.GetAxis("Vertical") * carSpeed;
+        print(y);
+        transform.Translate (new Vector2 (x, (speed+y) * Time.deltaTime));
 	}
 }

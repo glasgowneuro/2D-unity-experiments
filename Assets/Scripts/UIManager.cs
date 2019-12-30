@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-	public Text buttonCaption;
 	public Text scoreText;
-	public Button[] buttonArray;
 	private int score;
 	private bool gameOver = false;
 	void Start(){
@@ -22,24 +20,7 @@ public class UIManager : MonoBehaviour {
 			score += 1;
 		}
 	}
-	public void PausePlay(){
-		if (Time.timeScale == 0) {
-			Time.timeScale = 1;
-			buttonCaption.text = "II";
-		} else {
-			Exit();
-			Time.timeScale = 0;
-			buttonCaption.text = "I>";
-		}
-	}
 
-	public void GameIsOver(){
-		gameOver = true;
-		foreach (Button btn in buttonArray) {
-			btn.gameObject.SetActive (true);
-		}
-		//Exit();
-	}
 	public void LoadLevel(string level){
 		UnityEngine.SceneManagement.SceneManager.LoadScene (level);
 	}

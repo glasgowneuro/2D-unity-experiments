@@ -15,8 +15,6 @@ public class CarController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		position.x += Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
-		transform.position = position;
 	}
 
 	void Awake(){

@@ -10,8 +10,10 @@ public class EnemyCarShedder: MonoBehaviour {
 		GameObject enemyCarCollided = enemyCar.gameObject as GameObject;
 		if (enemyCarCollided.GetComponent<EnemyCar> ()) {
 			Destroy (enemyCar.gameObject);
-            Vector3 carSpawnPoint = new Vector3(Random.Range(-maxPos, maxPos), 6.8f, transform.position.z);
-            Instantiate(carToSpawn, carSpawnPoint, transform.rotation);
+            GameObject temp = GameObject.Find("EnemyCarSpawner");
+            Transform spTransform = temp.GetComponent<Transform>();
+            Vector3 carSpawnPoint = new Vector3(Random.Range(-maxPos, maxPos), spTransform.position.y, spTransform.position.z);
+            Instantiate(carToSpawn, carSpawnPoint, spTransform.rotation);
         }
     }
 }

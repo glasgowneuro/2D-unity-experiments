@@ -15,7 +15,6 @@ public class EnemyCar : MonoBehaviour {
     void Update () {
         float x = Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
         float y = Input.GetAxis("Vertical") * carSpeed;
-        print(y);
         transform.Translate (new Vector2 (x, (speed+y) * Time.deltaTime));
 	}
 }

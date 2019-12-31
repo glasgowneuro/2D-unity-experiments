@@ -8,7 +8,13 @@ public class UIManager : MonoBehaviour {
 	private int score;
 	private bool gameOver = false;
 	void Start(){
-		score = 0;
+
+        if (Display.displays.Length > 1)
+            Display.displays[1].Activate();
+        if (Display.displays.Length > 2)
+            Display.displays[2].Activate();
+
+        score = 0;
 		InvokeRepeating ("UpdateScore", 1f, 1f);
 	}
 

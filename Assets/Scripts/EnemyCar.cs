@@ -7,12 +7,14 @@ public class EnemyCar : MonoBehaviour {
     private readonly float carSpeed = -3;
     private readonly float speed = 1f;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
     }
 
     // Update is called once per frame
     void Update () {
+        Camera cam = gameObject.GetComponent<Camera>();
         float x = Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
         float y = Input.GetAxis("Vertical") * carSpeed;
         transform.Translate (new Vector2 (x, (speed+y) * Time.deltaTime));

@@ -8,9 +8,14 @@ public class EnemyCar : MonoBehaviour {
     private readonly float carSpeed = -3;
     private readonly float speed = 1f;
 
+    private SpriteRenderer sr;
 
     // Use this for initialization
     void Start () {
+        sr = GameObject.Find("CameraScreen").GetComponent<SpriteRenderer>();
+        if (sr == null) {
+            Debug.LogError("CameraScreen cannot be found");
+        }
     }
 
     // Update is called once per frame
@@ -28,12 +33,9 @@ public class EnemyCar : MonoBehaviour {
             }
         }
 
-        Debug.LogError("Avg: " + avg);
-        Sprite sprite = Sprite.Create(tex, new Rect(0,0,tex.width,tex.height),new Vector2(0.5F, 0.5F));
-        Sprite s = gameObject.GetComponent<Sprite>();
-
-        //Sprite sprite = Texture2DToSprite(tex);
-        //spriteRenderer.sprite = sprite;
+        // Debug.LogError("Avg: " + avg);
+        sr.color = Color.grey;
+        sr.material.mainTexture = tex;
         float x = Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
         float y = Input.GetAxis("Vertical") * carSpeed;
         transform.Translate (new Vector2 (x, (speed+y) * Time.deltaTime));

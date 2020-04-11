@@ -22,20 +22,20 @@ public class EnemyCar : MonoBehaviour {
     void Update () {
         Camera cam = gameObject.GetComponent<Camera>();
         cam.Render();
-        Texture2D tex = ToTexture2D(cam.activeTexture);
-        Color[] pixels = tex.GetPixels(0, 0, tex.width, tex.height);
+        Texture2D newTex = ToTexture2D(cam.activeTexture);
+        Color[] pixels = newTex.GetPixels(0, 0, newTex.width, newTex.height);
         float avg = 0.0F;
-        for (int i=0; i<tex.width; i++)
+        for (int i=0; i<newTex.width; i++)
         {
-            for (int j=0; j<tex.height; j++)
+            for (int j=0; j<newTex.height; j++)
             {
-                avg += pixels[i + tex.width * j].grayscale / (float)pixels.GetLength(0);
+                avg += pixels[i + newTex.width * j].grayscale / (float)pixels.GetLength(0);
             }
         }
-
         // Debug.LogError("Avg: " + avg);
-        sr.color = Color.grey;
-        sr.material.mainTexture = tex;
+
+        Rect r = new Rect(0,0, newTex.width / 3, newTex.height / 3);
+        sr.sprite = Sprite.Create(newTex, r, new Vector2(0.5f, 0.5f));
         float x = Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
         float y = Input.GetAxis("Vertical") * carSpeed;
         transform.Translate (new Vector2 (x, (speed+y) * Time.deltaTime));
